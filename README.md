@@ -10,7 +10,7 @@ Next create a virtual environment and install the dependencies.
 ```sh
 virtualenv venv
 source venv/bin/activate
-pip install -r flight-search-demo/requirements.txt
+pip install -r requirements.txt
 ```
 
 Finally, run the Django server.
