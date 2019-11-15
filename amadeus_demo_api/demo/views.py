@@ -2,6 +2,7 @@ import os
 from datetime import datetime, timedelta
 from amadeus import Client, ResponseError
 from django.shortcuts import render
+from django.contrib import messages
 
 
 def demo(request):
@@ -28,7 +29,8 @@ def demo(request):
             low_fare_flights = amadeus.shopping.flight_offers.get(**kwargs)
             prediction_flights = amadeus.shopping.flight_offers.prediction.post(low_fare_flights.result)
         except ResponseError as error:
-            print(error)
+            messages.add_message(request, messages.ERROR, error)
+            return render(request, 'demo/demo_form.html', {})
         low_fare_flights_returned = []
         for flight in low_fare_flights.data:
             offer = construct_flights(flight)
@@ -47,13 +49,13 @@ def demo(request):
                                                      })
     return render(request, 'demo/demo_form.html', {})
 
-
 def construct_flights(flight):
     offer = {}
     index = 0
     offer['price'] = flight['offerItems'][0]['price']['total']
     offer['id'] = flight['id']
     for f in flight['offerItems'][0]['services']:
+        # Keys starting from 0 correspond to Outbound flights and the keys starting from 1 tp Return flights
         if len(flight['offerItems'][0]['services'][index]['segments']) == 2:  # one stop flight
             offer[str(index)+'firstFlightDepartureAirport'] = \
             flight['offerItems'][0]['services'][index]['segments'][0]['flightSegment']['departure']['iataCode']

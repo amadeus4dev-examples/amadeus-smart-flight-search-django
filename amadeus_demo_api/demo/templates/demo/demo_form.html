@@ -18,6 +18,13 @@
         <div class="container">
           <div class="row">
             <div class="col-md-9 col-lg-8 mx-auto">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li class="text-danger">{% if message.tags %}{% endif %}{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
               <h3 class="login-heading mb-4">Welcome to Amadeus Flight Search</h3>
               <form action="" method="POST"> {% csrf_token %}
                   <div class="form-label-group">
