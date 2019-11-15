@@ -91,7 +91,6 @@ def construct_flights(flight):
             offer[str(index) + 'FlightTotalDuration'] = get_total_duration_connecting_flights(offer[str(index) + 'stop_time'], offer[
                 str(index) + 'firstFlightArrivalDuration'], offer[str(index) + 'secondFlightArrivalDuration'])
 
-
         elif len(flight['offerItems'][0]['services'][index]['segments']) == 1:  # direct flight
             offer[str(index)+'price'] = flight['offerItems'][0]['price']['total']
             offer[str(index)+'firstFlightDepartureAirport'] = \
