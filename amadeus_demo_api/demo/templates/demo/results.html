@@ -12,9 +12,11 @@
 <h3 class="login-heading mb-4 mt-4 pl-3">{{ origin }} &#x2708 {{ destination }} <br>{{ departureDate }}
 {% if returnDate %} <span class="text-info">&#10594&#10596</span> {{ returnDate }}{% endif %}</h3>
 
+<h4 class="login-heading mb-4 mt-4 pl-3">Flying for <span style="font-size: 26;color: darkred;">{{ tripPurpose }} </span> purposes</h4>
+
 <div class="modal-body row">
     <div class="col-md-5 offset-1">
-        <h3 class="login-heading mb-4 text-center">LOW-FARE FLIGHT RESULTS</h3>
+        <h3 class="login-heading mb-4 text-left">FLIGHT LOW-FARE API - RESULTS</h3>
         {%for r in response%}
             {% if r.0firstFlightDepartureDate %}
                 <div class="card mb-3 text-center" style="max-width: 40rem;">
@@ -47,11 +49,11 @@
         {% endfor %}
     </div>
         <div class="col-md-5">
-        <h3 class="login-heading mb-4 text-center">CHOICE PREDICTION RESULTS</h3>
+        <h3 class="login-heading mb-4 text-left">FLIGHT CHOICE PREDICTION - RESULTS</h3>
         {%for r in prediction%}
             {% if r.0firstFlightDepartureDate %}
                 <div class="card mb-3 text-center" style="max-width: 40rem;">
-                    <div class="card-header text-center" style="font-size: 26;color: darkred;">${{ r.price }}</div>
+                    <div class="card-header text-center" style="font-size: 26;color: darkred;">${{ r.price }} with {{ r.probability }}</div>
                     <div class="card-body">
                         <div class="card-text">
                             <h4 class="font-weight-light text-info pb-3">Departure <span class="" style="color: black; font-size: 15px;">Total duration {{ r.0FlightTotalDuration }}</span></h4>
