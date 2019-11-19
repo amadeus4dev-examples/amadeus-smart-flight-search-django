@@ -132,3 +132,26 @@ hr.newstyle {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
+
+.ui-menu {
+	position: relative;
+	list-style: none;
+	background-color: white;
+	border-radius: 18px;
+	z-index:10;
+	box-shadow: 5px 0px 8px white;
+	width: 214px;
+	line-height: 200%;
+	font-size: 18px;
+	padding: 15px 0;
+	border: solid 1px grey;
+}
+
+.ui-menu .ui-menu-item {
+	margin: none;
+	padding-left: 15px;
+    padding-right:10px;
+}
+.ui-menu .ui-menu-item:hover {
+	background-color: darkgrey;
+}
