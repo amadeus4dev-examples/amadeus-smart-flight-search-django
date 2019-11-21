@@ -5,9 +5,7 @@ from django.shortcuts import render
 from django.contrib import messages
 
 amadeus = Client(
-    client_id=os.environ.get('API_KEY'),
-    client_secret=os.environ.get('API_SECRET'),
-    hostname='production'
+    hostname=os.getenv('AMADEUS_ENVIRONMENT', 'test')
 )
 
 
