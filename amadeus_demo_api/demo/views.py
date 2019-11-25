@@ -6,8 +6,8 @@ from .flight import Flight
 
 
 amadeus = Client(
-    client_id=os.environ.get('API_KEY'),
-    client_secret=os.environ.get('API_SECRET'),
+    client_id=os.environ.get('AMADEUS_CLIENT_ID'),
+    client_secret=os.environ.get('AMADEUS_CLIENT_SECRET'),
     hostname='production'
 )
 
