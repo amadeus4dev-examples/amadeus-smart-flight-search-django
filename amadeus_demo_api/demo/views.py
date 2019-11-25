@@ -1,8 +1,10 @@
 import os
+import json
 from datetime import datetime, timedelta
-from amadeus import Client, ResponseError
+from amadeus import Client, ResponseError, Location
 from django.shortcuts import render
 from django.contrib import messages
+from django.http import HttpResponse
 
 amadeus = Client(
     client_id=os.environ.get('API_KEY'),
@@ -184,3 +186,28 @@ def get_probability(choice_probability):
     else:
         return 'really low probability'
 
+
+def origin_airport_search(request):
+    if request.is_ajax():
+        try:
+            data = amadeus.reference_data.locations.get(keyword=request.GET.get('term', None), subType=Location.ANY).data
+        except ResponseError as error:
+            messages.add_message(request, messages.ERROR, error)
+    return HttpResponse(get_city_airport_list(data), 'application/json')
+
+
+def destination_airport_search(request):
+    if request.is_ajax():
+        try:
+            data = amadeus.reference_data.locations.get(keyword=request.GET.get('term', None), subType=Location.ANY).data
+        except ResponseError as error:
+            messages.add_message(request, messages.ERROR, error)
+    return HttpResponse(get_city_airport_list(data), 'application/json')
+
+
+def get_city_airport_list(data):
+    result = []
+    for i, val in enumerate(data):
+        result.append(data[i]['iataCode']+', '+data[i]['name'])
+    result = list(dict.fromkeys(result))
+    return json.dumps(result)
