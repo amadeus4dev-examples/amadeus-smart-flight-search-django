@@ -1,9 +1,12 @@
 import os
-from amadeus import Client, ResponseError
+import json
+from datetime import datetime, timedelta
+from amadeus import Client, ResponseError, Location
 from django.shortcuts import render
 from django.contrib import messages
 from .flight import Flight
 
+from django.http import HttpResponse
 
 amadeus = Client(
     client_id=os.environ.get('AMADEUS_CLIENT_ID'),
@@ -63,3 +66,28 @@ def demo(request):
                                                      'tripPurpose': tripPurpose,
                                                      })
     return render(request, 'demo/demo_form.html', {})
+
+def origin_airport_search(request):
+    if request.is_ajax():
+        try:
+            data = amadeus.reference_data.locations.get(keyword=request.GET.get('term', None), subType=Location.ANY).data
+        except ResponseError as error:
+            messages.add_message(request, messages.ERROR, error)
+    return HttpResponse(get_city_airport_list(data), 'application/json')
+
+
+def destination_airport_search(request):
+    if request.is_ajax():
+        try:
+            data = amadeus.reference_data.locations.get(keyword=request.GET.get('term', None), subType=Location.ANY).data
+        except ResponseError as error:
+            messages.add_message(request, messages.ERROR, error)
+    return HttpResponse(get_city_airport_list(data), 'application/json')
+
+
+def get_city_airport_list(data):
+    result = []
+    for i, val in enumerate(data):
+        result.append(data[i]['iataCode']+', '+data[i]['name'])
+    result = list(dict.fromkeys(result))
+    return json.dumps(result)
