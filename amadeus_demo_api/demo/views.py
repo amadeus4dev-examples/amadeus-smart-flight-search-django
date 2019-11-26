@@ -5,15 +5,9 @@ from amadeus import Client, ResponseError, Location
 from django.shortcuts import render
 from django.contrib import messages
 from .flight import Flight
-
 from django.http import HttpResponse
 
-amadeus = Client(
-    client_id=os.environ.get('AMADEUS_CLIENT_ID'),
-    client_secret=os.environ.get('AMADEUS_CLIENT_SECRET'),
-    hostname='production'
-)
-
+amadeus = Client()
 
 def demo(request):
     origin = request.POST.get('Origin')
@@ -90,4 +84,5 @@ def get_city_airport_list(data):
     for i, val in enumerate(data):
         result.append(data[i]['iataCode']+', '+data[i]['name'])
     result = list(dict.fromkeys(result))
+    
     return json.dumps(result)
