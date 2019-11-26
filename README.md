@@ -2,7 +2,46 @@
 
 ## What is this?
 
-This prototype shows how the Air APIs can be integrated with `Django` framework.
+This prototype shows how the Air APIs can be integrated with `Django` framework, by calling the [Flight Choice Prediction](https://developers.amadeus.com/self-service/category/air/api-doc/flight-choice-prediction) and [Trip Purpose Prediction](https://developers.amadeus.com/self-service/category/trip/api-doc/trip-purpose-prediction).
+We also call the [Flight Low-fare Search](https://developers.amadeus.com/self-service/category/air/api-doc/flight-low-fare-search) as a more traditional method of flight search and we compare its results with the Flight Choice Prediction ones to show the power of AI.
+
+## How to run the project via Docker (recommended)
+
+Build the image from the Dockerfile. The following command will 
+
+```sh
+make
+```
+
+The container receives your API key/secret from the environment variables.
+Before running the container, make sure your have your credentials correctly
+set:
+
+```sh
+export AMADEUS_CLIENT_ID=YOUR_API_KEY
+export AMADEUS_CLIENT_SECRET=YOUR_API_SECRET
+```
+
+Finally, start the container from the image:
+
+```
+make run
+```
+
+At this point you can open a browser and go to `https://localhost:8000`.
+
+Note that it is also possible to run in detached mode so your terminal is still
+usable:
+
+```
+make start
+```
+
+Stop the container with:
+
+```
+make stop
+```
 
 ## How to run the project locally
 
@@ -49,42 +88,3 @@ python amadeus_demo_api/manage.py runserver
 ```
 
 Finally, open a browser and go to `https://localhost:8000`
-
-
-## How to run the project via Docker
-
-Build the image from the Dockerfile. The following command will 
-
-```sh
-make
-```
-
-The container receives your API key/secret from the environment variables.
-Before running the container, make sure your have your credentials correctly
-set:
-
-```sh
-export AMADEUS_CLIENT_ID=YOUR_API_KEY
-export AMADEUS_CLIENT_SECRET=YOUR_API_SECRET
-```
-
-Finally, start the container from the image:
-
-```
-make run
-```
-
-At this point you can open a browser and go to `https://localhost:8000`.
-
-Note that it is also possible to run in detached mode so your terminal is still
-usable:
-
-```
-make start
-```
-
-Stop the container with:
-
-```
-make stop
-```

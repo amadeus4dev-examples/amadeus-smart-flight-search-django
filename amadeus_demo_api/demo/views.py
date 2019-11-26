@@ -1,6 +1,4 @@
-import os
 import json
-from datetime import datetime, timedelta
 from amadeus import Client, ResponseError, Location
 from django.shortcuts import render
 from django.contrib import messages
@@ -8,6 +6,7 @@ from .flight import Flight
 from django.http import HttpResponse
 
 amadeus = Client()
+
 
 def demo(request):
     origin = request.POST.get('Origin')
@@ -60,6 +59,7 @@ def demo(request):
                                                      'tripPurpose': tripPurpose,
                                                      })
     return render(request, 'demo/demo_form.html', {})
+
 
 def origin_airport_search(request):
     if request.is_ajax():
