@@ -1,4 +1,4 @@
-# IA Prediction APIs showcase
+# AI Prediction APIs showcase
 
 ## What is this?
 
@@ -27,6 +27,20 @@ For authentication add your API key/secret to your `.bashrc` or `.zshrc` files.
 export AMADEUS_CLIENT_ID=YOUR_API_KEY
 export AMADEUS_CLIENT_SECRET=YOUR_API_SECRET
 ```
+
+You can easily switch between `test` and `production` environments by setting:
+
+```
+export AMADEUS_HOSTNAME="test" # an empty value will also set the environment to test
+```
+
+or
+
+```
+export AMADEUS_HOSTNAME="production"
+```
+
+> Each environment has different API keys. Do not forget to update them!
 
 Finally, run the Django server.
 
