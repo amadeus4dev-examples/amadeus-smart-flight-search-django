@@ -88,3 +88,14 @@ python amadeus_demo_api/manage.py runserver
 ```
 
 Finally, open a browser and go to `https://localhost:8000`
+
+## License
+
+This library is released under the [MIT License](LICENSE).
+
+## Help
+
+Our [developer support team](https://developers.amadeus.com/support) is here
+to help you. You can find us on
+[StackOverflow](https://stackoverflow.com/questions/tagged/amadeus) and
+[email](mailto:developers@amadeus.com).
