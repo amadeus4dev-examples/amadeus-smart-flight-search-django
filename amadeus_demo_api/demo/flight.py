@@ -15,82 +15,82 @@ class Flight:
         for f in self.flight['offerItems'][0]['services']:
             # Keys starting from 0 correspond to Outbound flights and the keys starting from 1 tp Return flights
             if len(self.flight['offerItems'][0]['services'][index]['segments']) == 2:  # one stop flight
-                offer[str(index) + 'firstFlightDepartureAirport'] = \
+                offer['firstFlightDepartureAirport'] = \
                     self.flight['offerItems'][0]['services'][index]['segments'][0]['flightSegment']['departure'][
                         'iataCode']
-                offer[str(index) + 'firstFlightAirlineLogo'] = \
+                offer[f'{index}firstFlightAirlineLogo'] = \
                     get_airline_logo(
                         self.flight['offerItems'][0]['services'][index]['segments'][0]['flightSegment']['carrierCode'])
-                offer[str(index) + 'firstFlightAirline'] = \
+                offer[f'{index}firstFlightAirline'] = \
                     self.flight['offerItems'][0]['services'][index]['segments'][0]['flightSegment']['carrierCode']
-                offer[str(index) + 'firstFlightDepartureDate'] = \
+                offer[f'{index}firstFlightDepartureDate'] = \
                     get_hour(
                         self.flight['offerItems'][0]['services'][index]['segments'][0]['flightSegment']['departure'][
                             'at'])
-                offer[str(index) + 'firstFlightArrivalAirport'] = \
+                offer[f'{index}firstFlightArrivalAirport'] = \
                     self.flight['offerItems'][0]['services'][index]['segments'][0]['flightSegment']['arrival'][
                         'iataCode']
-                offer[str(index) + 'firstFlightArrivalDate'] = \
+                offer[f'{index}firstFlightArrivalDate'] = \
                     get_hour(self.flight['offerItems'][0]['services'][index]['segments'][0]['flightSegment']['arrival'][
                                  'at'])
-                offer[str(index) + 'firstFlightArrivalDuration'] = \
+                offer[f'{index}firstFlightArrivalDuration'] = \
                     get_duration(
                         self.flight['offerItems'][0]['services'][index]['segments'][0]['flightSegment']['duration'])
-                offer[str(index) + 'secondFlightDepartureAirport'] = \
+                offer[f'{index}secondFlightDepartureAirport'] = \
                     self.flight['offerItems'][0]['services'][index]['segments'][1]['flightSegment']['departure'][
                         'iataCode']
-                offer[str(index) + 'secondFlightDepartureDate'] = \
+                offer[f'{index}secondFlightDepartureDate'] = \
                     get_hour(
                         self.flight['offerItems'][0]['services'][index]['segments'][1]['flightSegment']['departure'][
                             'at'])
-                offer[str(index) + 'secondFlightAirlineLogo'] = \
+                offer[f'{index}secondFlightAirlineLogo'] = \
                     get_airline_logo(
                         self.flight['offerItems'][0]['services'][index]['segments'][1]['flightSegment']['carrierCode'])
-                offer[str(index) + 'secondFlightAirline'] = \
+                offer[f'{index}secondFlightAirline'] = \
                     self.flight['offerItems'][0]['services'][index]['segments'][1]['flightSegment']['carrierCode']
                 get_hour(
                     self.flight['offerItems'][0]['services'][index]['segments'][1]['flightSegment']['departure']['at'])
-                offer[str(index) + 'secondFlightArrivalAirport'] = \
+                offer[f'{index}secondFlightArrivalAirport'] = \
                     self.flight['offerItems'][0]['services'][index]['segments'][1]['flightSegment']['arrival'][
                         'iataCode']
-                offer[str(index) + 'secondFlightArrivalDate'] = \
+                offer[f'{index}secondFlightArrivalDate'] = \
                     get_hour(self.flight['offerItems'][0]['services'][index]['segments'][1]['flightSegment']['arrival'][
                                  'at'])
-                offer[str(index) + 'secondFlightArrivalDuration'] = \
+                offer[f'{index}secondFlightArrivalDuration'] = \
                     get_duration(
                         self.flight['offerItems'][0]['services'][index]['segments'][1]['flightSegment']['duration'])
-                offer[str(index) + 'stop_time'] = get_stoptime(
+                offer[f'{index}stop_time'] = get_stoptime(
                     self.flight['offerItems'][0]['services'][index]['segments'][0]['flightSegment']['arrival']['at'],
                     self.flight['offerItems'][0]['services'][index]['segments'][1]['flightSegment']['departure']['at'])
-                offer[str(index) + 'FlightTotalDuration'] = get_total_duration_connecting_flights(
-                    offer[str(index) + 'stop_time'], offer[
-                        str(index) + 'firstFlightArrivalDuration'], offer[str(index) + 'secondFlightArrivalDuration'])
+                offer[f'{index}FlightTotalDuration'] = get_total_duration_connecting_flights(
+                    offer[f'{index}stop_time'], offer[
+                        f'{index}firstFlightArrivalDuration'], offer[f'{index}secondFlightArrivalDuration'])
 
             elif len(self.flight['offerItems'][0]['services'][index]['segments']) == 1:  # direct flight
-                offer[str(index) + 'price'] = self.flight['offerItems'][0]['price']['total']
-                offer[str(index) + 'firstFlightDepartureAirport'] = \
+                offer[f'{index}price'] = self.flight['offerItems'][0]['price']['total']
+                offer[f'{index}firstFlightDepartureAirport'] = \
                     self.flight['offerItems'][0]['services'][index]['segments'][0]['flightSegment']['departure'][
                         'iataCode']
-                offer[str(index) + 'firstFlightAirlineLogo'] = \
+                offer[f'{index}firstFlightAirlineLogo'] = \
                     get_airline_logo(
                         self.flight['offerItems'][0]['services'][index]['segments'][0]['flightSegment']['carrierCode'])
-                offer[str(index) + 'firstFlightAirline'] = \
+                offer[f'{index}firstFlightAirline'] = \
                     self.flight['offerItems'][0]['services'][index]['segments'][0]['flightSegment']['carrierCode']
-                offer[str(index) + 'firstFlightDepartureDate'] = \
+                offer[f'{index}firstFlightDepartureDate'] = \
                     get_hour(
                         self.flight['offerItems'][0]['services'][index]['segments'][0]['flightSegment']['departure'][
                             'at'])
-                offer[str(index) + 'firstFlightArrivalAirport'] = \
+                offer[f'{index}firstFlightArrivalAirport'] = \
                     self.flight['offerItems'][0]['services'][index]['segments'][0]['flightSegment']['arrival'][
                         'iataCode']
-                offer[str(index) + 'firstFlightArrivalDate'] = \
+                offer[f'{index}firstFlightArrivalDate'] = \
                     get_hour(self.flight['offerItems'][0]['services'][index]['segments'][0]['flightSegment']['arrival'][
                                  'at'])
-                offer[str(index) + 'firstFlightArrivalDuration'] = \
+                offer[f'{index}firstFlightArrivalDuration'] = \
                     get_duration(
                         self.flight['offerItems'][0]['services'][index]['segments'][0]['flightSegment']['duration'])
-                offer[str(index) + 'FlightTotalDuration'] = get_total_duration_direct_flight(
-                    offer[str(index) + 'firstFlightArrivalDuration'])
+                offer[f'{index}FlightTotalDuration'] = get_total_duration_direct_flight(
+                    offer[f'{index}firstFlightArrivalDuration'])
             index += 1
 
         return offer
@@ -140,7 +140,7 @@ def get_stoptime(arrival_stop_time, departure_stop_time):
 
 
 def get_airline_logo(carrier_code):
-    return "https://s1.apideeplink.com/images/airlines/" + carrier_code + ".png"
+    return f'https://s1.apideeplink.com/images/airlines/{carrier_code}.png'
 
 
 def get_probability(choice_probability):
