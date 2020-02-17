@@ -89,7 +89,7 @@ Finally, run the Django server.
 python amadeus_demo_api/manage.py runserver
 ```
 
-Finally, open a browser and go to `https://localhost:8000`
+Finally, open a browser and go to `http://127.0.0.1:8000/`
 
 ## License
 
