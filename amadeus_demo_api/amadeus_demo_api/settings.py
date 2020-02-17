@@ -23,7 +23,7 @@ SECRET_KEY = 'q77h6c^4l2fkcbfwnusbaas#()#mp48hj@_93o#h_+62u%%2t8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG_VALUE')
-ALLOWED_HOSTS = ['amadeus4dev-smart-flightsearch.herokuapp.com', '0.0.0.0']
+ALLOWED_HOSTS = ['amadeus4dev-smart-flightsearch.herokuapp.com', '0.0.0.0', '127.0.0.1']
 
 # Application definition
 
