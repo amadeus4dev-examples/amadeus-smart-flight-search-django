@@ -5,7 +5,7 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'demo/style.css' %}">
     <meta charset="UTF-8">
-    <title>Amadeus Demo API</title>
+    <title>Amadeus Smart Flight Search</title>
 </head>
 <body>
 
@@ -16,7 +16,7 @@
 
 <div class="modal-body row">
     <div class="col-md-5 offset-1">
-        <h3 class="login-heading mb-4 text-left">FLIGHT LOW-FARE API - RESULTS</h3>
+        <h3 class="login-heading mb-4 text-left">FLIGHT OFFERS SEARCH</h3>
         {%for r in response%}
             {% if r.0firstFlightDepartureDate %}
                 <div class="card mb-3 text-center" style="max-width: 40rem;">
@@ -49,7 +49,7 @@
         {% endfor %}
     </div>
         <div class="col-md-5">
-        <h3 class="login-heading mb-4 text-left">FLIGHT CHOICE PREDICTION - RESULTS</h3>
+        <h3 class="login-heading mb-4 text-left">FLIGHT CHOICE PREDICTION</h3>
         {%for r in prediction%}
             {% if r.0firstFlightDepartureDate %}
                 <div class="card mb-3 text-center" style="max-width: 40rem;">
