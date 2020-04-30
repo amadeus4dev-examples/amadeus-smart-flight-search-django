@@ -50,8 +50,8 @@ make stop
 Clone the repository.
 
 ```sh
-git clone https://github.com/amadeus4dev/flight-search-demo.git
-cd flight-search-demo
+git clone https://github.com/amadeus4dev/amadeus-smart-flight-search-django.git
+cd amadeus-smart-flight-search-django
 ```
 
 Next create a virtual environment and install the dependencies.

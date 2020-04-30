@@ -15,18 +15,20 @@ def demo(request):
     returnDate = request.POST.get('Returndate')
     adults = request.POST.get('Adults')
 
-    kwargs = {'origin': request.POST.get('Origin'), 'destination': request.POST.get('Destination'),
-              'departureDate': request.POST.get('Departuredate')}
-    if adults:
-        kwargs['adults'] = adults
-    tripPurpose = ''
+    if not adults:
+        adults = 1
+
+    kwargs = {'originLocationCode': origin,
+              'destinationLocationCode': destination,
+              'returnDate': returnDate,
+              'departureDate': departureDate,
+              'adults': adults
+              }
+
     if returnDate:
         kwargs['returnDate'] = returnDate
         try:
-            trip_purpose_response = amadeus.travel.predictions.trip_purpose.get(originLocationCode=origin,
-                                                                                destinationLocationCode=destination,
-                                                                                departureDate=departureDate,
-                                                                                returnDate=returnDate).data
+            trip_purpose_response = amadeus.travel.predictions.trip_purpose.get(**kwargs).data
             tripPurpose = trip_purpose_response['result']
         except ResponseError as error:
             messages.add_message(request, messages.ERROR, error)
@@ -34,23 +36,22 @@ def demo(request):
 
     if origin and destination and departureDate:
         try:
-            low_fare_flights = amadeus.shopping.flight_offers.get(**kwargs)
-            prediction_flights = amadeus.shopping.flight_offers.prediction.post(low_fare_flights.result)
+            flight_offers = amadeus.shopping.flight_offers_search.get(**kwargs)
+            prediction_flights = amadeus.shopping.flight_offers.prediction.post(flight_offers.result)
         except ResponseError as error:
             messages.add_message(request, messages.ERROR, error)
             return render(request, 'demo/demo_form.html', {})
-        low_fare_flights_returned = []
-        for flight in low_fare_flights.data:
+        flights_offers_returned = []
+        for flight in flight_offers.data:
             offer = Flight(flight).construct_flights()
-            low_fare_flights_returned.append(offer)
-        low_fare_flights_returned_by_price = sorted(low_fare_flights_returned, key=lambda k: k['price'])
+            flights_offers_returned.append(offer)
 
         prediction_flights_returned = []
         for flight in prediction_flights.data:
             offer = Flight(flight).construct_flights()
             prediction_flights_returned.append(offer)
 
-        return render(request, 'demo/results.html', {'response': low_fare_flights_returned_by_price,
+        return render(request, 'demo/results.html', {'response': flights_offers_returned,
                                                      'prediction': prediction_flights_returned,
                                                      'origin': origin,
                                                      'destination': destination,
@@ -64,7 +65,8 @@ def demo(request):
 def origin_airport_search(request):
     if request.is_ajax():
         try:
-            data = amadeus.reference_data.locations.get(keyword=request.GET.get('term', None), subType=Location.ANY).data
+            data = amadeus.reference_data.locations.get(keyword=request.GET.get('term', None),
+                                                        subType=Location.ANY).data
         except ResponseError as error:
             messages.add_message(request, messages.ERROR, error)
     return HttpResponse(get_city_airport_list(data), 'application/json')
@@ -73,7 +75,8 @@ def origin_airport_search(request):
 def destination_airport_search(request):
     if request.is_ajax():
         try:
-            data = amadeus.reference_data.locations.get(keyword=request.GET.get('term', None), subType=Location.ANY).data
+            data = amadeus.reference_data.locations.get(keyword=request.GET.get('term', None),
+                                                        subType=Location.ANY).data
         except ResponseError as error:
             messages.add_message(request, messages.ERROR, error)
     return HttpResponse(get_city_airport_list(data), 'application/json')
@@ -82,7 +85,6 @@ def destination_airport_search(request):
 def get_city_airport_list(data):
     result = []
     for i, val in enumerate(data):
-        result.append(data[i]['iataCode']+', '+data[i]['name'])
+        result.append(data[i]['iataCode'] + ', ' + data[i]['name'])
     result = list(dict.fromkeys(result))
-    
     return json.dumps(result)
