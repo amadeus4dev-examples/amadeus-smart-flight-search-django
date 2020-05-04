@@ -20,11 +20,11 @@ def demo(request):
 
     kwargs = {'originLocationCode': origin,
               'destinationLocationCode': destination,
-              'returnDate': returnDate,
               'departureDate': departureDate,
               'adults': adults
               }
 
+    tripPurpose = ''
     if returnDate:
         kwargs['returnDate'] = returnDate
         try:
