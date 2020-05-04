@@ -3,7 +3,7 @@
 ## What is this?
 
 This prototype shows how the Air APIs can be integrated with `Django` framework, by calling the [Flight Choice Prediction](https://developers.amadeus.com/self-service/category/air/api-doc/flight-choice-prediction) and [Trip Purpose Prediction](https://developers.amadeus.com/self-service/category/trip/api-doc/trip-purpose-prediction).
-We also call the [Flight Low-fare Search](https://developers.amadeus.com/self-service/category/air/api-doc/flight-low-fare-search) as a more traditional method of flight search and we compare its results with the Flight Choice Prediction ones to show the power of AI.
+We also call the [Flight Offers Search](https://developers.amadeus.com/self-service/category/air/api-doc/flight-offers-search) as a more traditional method of flight search and we compare its results with the Flight Choice Prediction ones to show the power of AI.
 We've also hosted this [application](https://amadeus4dev-smart-flightsearch.herokuapp.com/) so you can directly play with it.
 
 ## How to run the project via Docker (recommended)
