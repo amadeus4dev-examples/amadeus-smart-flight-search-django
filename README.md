@@ -6,7 +6,7 @@ This prototype shows how the Air APIs can be integrated with `Django` framework,
 
 We also call the [Flight Offers Search](https://developers.amadeus.com/self-service/category/air/api-doc/flight-offers-search) as a more traditional method of flight search and we compare its results with the Flight Choice Prediction ones to show the power of AI.
 
-We've also hosted this [application](https://amadeus4dev-smart-flightsearch.herokuapp.com/) so you can directly play with it and check out the related [blog article](https://developers.amadeus.com/blog/how-ai-can-help-you-find-the-perfect-flight).
+We also wrote a [blog article](https://developers.amadeus.com/blog/how-ai-can-help-you-find-the-perfect-flight) as a tutorial. 
 
 ## How to run the project via Docker (recommended)
 
